@@ -2,9 +2,8 @@ import React from 'react';
 import '../styles/TodoItem.sass';
 
 const TodoItem = ({ todo, onToggle, onDelete, onEdit }) => {
-  const dueDate = new Date(todo.dueDate);
-  const today = new Date();
-  const isOverdue = today > dueDate && !todo.completed;
+  const dueDateTime = todo.dueDate ? new Date(todo.dueDate) : null;
+  const isOverdue = dueDateTime && !todo.completed && new Date() > dueDateTime;
 
   return (
     <div className={`todo-item ${todo.completed ? 'completed' : ''} ${isOverdue ? 'overdue' : ''}`}>
@@ -14,7 +13,11 @@ const TodoItem = ({ todo, onToggle, onDelete, onEdit }) => {
         onChange={() => onToggle(todo.id)} 
       />
       <span>{todo.text}</span>
-      {todo.dueDate && <span className="due-date">{dueDate.toDateString()}</span>}
+      {dueDateTime && (
+        <span className="due-date-time">
+          {dueDateTime.toLocaleDateString()} {dueDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </span>
+      )}
       <span className={`priority ${todo.priority.toLowerCase()}`}>{todo.priority}</span>
       <button onClick={onEdit}>Edit</button>
       <button onClick={() => onDelete(todo.id)}>Delete</button>

@@ -3,11 +3,13 @@ import '../styles/EditTodo.sass';
 
 function EditTodo({ todo, onSave, onCancel }) {
   const [editedText, setEditedText] = useState(todo.text);
-  const [editedDueDate, setEditedDueDate] = useState(todo.dueDate);
+  const [editedDueDate, setEditedDueDate] = useState(todo.dueDate ? todo.dueDate.split('T')[0] : '');
+  const [editedDueTime, setEditedDueTime] = useState(todo.dueDate ? todo.dueDate.split('T')[1] : '');
   const [editedPriority, setEditedPriority] = useState(todo.priority);
 
   const handleSaveClick = () => {
-    onSave(todo.id, editedText, editedDueDate, editedPriority);
+    const updatedDueDateTime = editedDueDate && editedDueTime ? `${editedDueDate}T${editedDueTime}` : null;
+    onSave(todo.id, editedText, updatedDueDateTime, editedPriority);
   };
 
   return (
@@ -21,6 +23,11 @@ function EditTodo({ todo, onSave, onCancel }) {
         type="date" 
         value={editedDueDate} 
         onChange={(e) => setEditedDueDate(e.target.value)}
+      />
+      <input 
+        type="time" 
+        value={editedDueTime} 
+        onChange={(e) => setEditedDueTime(e.target.value)}
       />
       <select 
         value={editedPriority} 

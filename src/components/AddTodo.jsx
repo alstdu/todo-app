@@ -4,20 +4,23 @@ import '../styles/AddTodo.sass';
 function AddTodo({ onAdd }) {
   const [newTodo, setNewTodo] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [dueTime, setDueTime] = useState('');
   const [priority, setPriority] = useState('Low');
 
   const handleAddClick = () => {
     if (newTodo.trim()) {
+      const dueDateTime = dueDate && dueTime ? `${dueDate}T${dueTime}` : null;
       const newTodoItem = {
         id: Date.now(),
         text: newTodo,
         completed: false,
-        dueDate: dueDate,
+        dueDate: dueDateTime,
         priority: priority,
       };
       onAdd(newTodoItem);
       setNewTodo('');
       setDueDate('');
+      setDueTime('');
       setPriority('Low');
     }
   };
@@ -34,6 +37,11 @@ function AddTodo({ onAdd }) {
         type="date" 
         value={dueDate} 
         onChange={(e) => setDueDate(e.target.value)}
+      />
+      <input 
+        type="time" 
+        value={dueTime} 
+        onChange={(e) => setDueTime(e.target.value)}
       />
       <select 
         value={priority} 
