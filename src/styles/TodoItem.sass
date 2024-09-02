@@ -5,6 +5,9 @@
     justify-content: space-between
     padding: 10px
     border-bottom: 1px solid #eee
+    &.overdue
+        background-color: #fdd
+        border: 1px solid #d88
 
 span
     flex-grow: 1
@@ -27,3 +30,7 @@ button
     &:first-of-type
         background-color: $primary-color
         margin-left: 0
+
+.due-date
+    font-size: 0.9em
+    color: #888

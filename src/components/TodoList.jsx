@@ -35,9 +35,9 @@ function TodoList() {
     setEditingTodo(todoToEdit);
   };
 
-  const handleSave = (id, newText) => {
+  const handleSave = (id, newText, newDueDate) => {
     setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, text: newText } : todo
+      todo.id === id ? { ...todo, text: newText, dueDate: newDueDate } : todo
     ));
     setEditingTodo(null);
   };
