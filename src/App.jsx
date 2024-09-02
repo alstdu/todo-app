@@ -6,7 +6,6 @@ function App() {
   console.log('App rendered');
   return (
     <div className="App">
-      <h1>Todo App</h1>
       <TodoList />
     </div>
   );
