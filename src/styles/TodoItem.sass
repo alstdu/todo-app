@@ -1,0 +1,29 @@
+@import './variables'
+
+.todo-item
+    display: flex
+    justify-content: space-between
+    padding: 10px
+    border-bottom: 1px solid #eee
+
+span
+    flex-grow: 1
+    margin: 0 10px
+    font-family: $font-family
+
+button
+    background-color: $secondary-color
+    color: #fff
+    border: none
+    border-radius: $border-radius
+    padding: 8px 16px
+    cursor: pointer
+    font-size: 1rem
+    margin-left: 5px
+
+    &:hover
+        opacity: 0.9
+
+    &:first-of-type
+        background-color: $primary-color
+        margin-left: 0
