@@ -15,6 +15,7 @@ const TodoItem = ({ todo, onToggle, onDelete, onEdit }) => {
       />
       <span>{todo.text}</span>
       {todo.dueDate && <span className="due-date">{dueDate.toDateString()}</span>}
+      <span className={`priority ${todo.priority.toLowerCase()}`}>{todo.priority}</span>
       <button onClick={onEdit}>Edit</button>
       <button onClick={() => onDelete(todo.id)}>Delete</button>
     </div>
